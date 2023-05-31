@@ -12,62 +12,11 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-
-            if (items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                continue;
-            }
-            items[i].sellIn = items[i].sellIn - 1;
-
-            //premier bloc
-            if (items[i].name.equals(AGED_BRIE)) {
-                updateAgedBrie(i);
-            } else if (items[i].name.equals(BACKSTAGE_PASSES_TO_A_TAFKAL_80_ETC_CONCERT)) {
-                updateBackstage(i);
-            } else {
-                updateNormalItem(i);
-            }
+            items[i].Update();
         }
     }
 
-    private void updateNormalItem(int i) {
-        decreaseQuality(i);
-        if (items[i].sellIn < 0) {
-            decreaseQuality(i);
-        }
-    }
 
-    private void updateAgedBrie(int i) {
-        increaseQuality(i);
-        if (items[i].sellIn < 0) {
-            increaseQuality(i);
-        }
-    }
 
-    private void updateBackstage(int i) {
-        increaseQuality(i);
 
-        if (items[i].sellIn < 10) {
-            increaseQuality(i);
-        }
-
-        if (items[i].sellIn < 5) {
-            increaseQuality(i);
-        }
-
-        if (items[i].sellIn < 0) {
-            items[i].quality = 0;
-        }
-    }
-
-    private void decreaseQuality(int i) {
-        if (items[i].quality > 0) {
-            items[i].quality = items[i].quality - 1;
-        }
-    }
-
-    private void increaseQuality(int i) {
-        if (items[i].quality < 50) {
-            items[i].quality = items[i].quality + 1;
-        }
-    }
 }
